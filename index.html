@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character Encoding & Viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Primary Meta Tags -->
+    <title>Student Attendance Tracker | Track & Maintain 75% Attendance</title>
+    <meta name="title" content="Student Attendance Tracker | Track & Maintain 75% Attendance">
+    <meta name="description" content="Free attendance tracking app for students. Monitor your class attendance, calculate percentages in real-time, and ensure you meet the 75% eligibility criteria for exams. Works offline!">
+    <meta name="keywords" content="attendance tracker, student attendance, 75% attendance, exam eligibility, class tracker, attendance calculator">
+    <meta name="author" content="Sushil RK">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://attendancetracker.app/">
+    <meta property="og:title" content="Student Attendance Tracker">
+    <meta property="og:description" content="Track your class attendance and stay eligible for exams. Free, works offline!">
+    <meta property="og:image" content="./assets/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://attendancetracker.app/">
+    <meta property="twitter:title" content="Student Attendance Tracker">
+    <meta property="twitter:description" content="Track your class attendance and stay eligible for exams. Free, works offline!">
+    <meta property="twitter:image" content="./assets/og-image.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+    <link rel="mask-icon" href="./assets/safari-pinned-tab.svg" color="#6366f1">
+    <meta name="msapplication-TileColor" content="#6366f1">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Critical CSS Inline -->
+    <style>
+        /* Critical Above-the-fold CSS */
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;line-height:1.6}
+        .container{max-width:800px;margin:20px auto;background:#fff;border-radius:24px;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);overflow:hidden;animation:fadeIn 0.5s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:30px;display:flex;justify-content:space-between;align-items:flex-start;gap:25px}
+        .header-left{z-index:1}
+        .logo{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+        .logo-icon{font-size:2.5rem}
+        header h1{font-size:2rem;font-weight:700;letter-spacing:-0.5px}
+        .tagline{font-size:0.95rem;opacity:0.9;font-weight:300}
+        .header-right{display:flex;flex-direction:column;align-items:flex-end;gap:15px;z-index:1}
+        .stats-card{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border-radius:16px;padding:15px 25px;display:flex;align-items:center;gap:20px;border:1px solid rgba(255,255,255,0.2)}
+        .stat-item{display:flex;flex-direction:column;align-items:center}
+        .stat-value{font-size:1.8rem;font-weight:700;line-height:1}
+        .stat-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;opacity:0.8;margin-top:4px}
+        .stat-divider{width:1px;height:40px;background:rgba(255,255,255,0.3)}
+        .btn-primary{background:#fff;color:#6366f1;border:none;padding:14px 24px;border-radius:12px;cursor:pointer;font-weight:600;font-size:0.95rem;transition:all 0.3s;display:flex;align-items:center;gap:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)}
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)}
+        .content-area{padding:30px;min-height:400px}
+        .loading-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.5s ease}
+        .loading-screen.hidden{opacity:0;pointer-events:none}
+        .loader{width:60px;height:60px;border:4px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .loading-text{margin-top:20px;color:#fff;font-size:1.1rem;font-weight:500}
+        noscript{background:#ef4444;color:#fff;padding:20px;text-align:center;font-weight:600}
+    </style>
+    
+    <!-- Preload Main CSS -->
+    <link rel="preload" href="./style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="./style.min.css"></noscript>
+    
+    <!-- Google Fonts with font-display: swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loader"></div>
+        <p class="loading-text">Loading Attendance Tracker...</p>
+    </div>
+    
+    <!-- No JavaScript Warning -->
+    <noscript>
+        <div style="background:#ef4444;color:#fff;padding:20px;text-align:center;font-weight:600">
+            ⚠️ JavaScript is required to use this attendance tracker. Please enable JavaScript in your browser settings.
+        </div>
+    </noscript>
+    
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-icon">📊</span>
+                    <h1>Attendance Tracker</h1>
+                </div>
+                <p class="tagline">Keep your attendance above 75%</p>
+            </div>
+            <div class="header-right">
+                <div class="stats-card">
+                    <div class="stat-item">
+                        <span class="stat-value" id="avgAttendance">0%</span>
+                        <span class="stat-label">Average</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="subjectCount">0/7</span>
+                        <span class="stat-label">Subjects</span>
+                    </div>
+                </div>
+                <button id="addSubjectBtn" class="btn-primary" aria-label="Add new subject">
+                    <span class="btn-icon" aria-hidden="true">+</span>
+                    <span class="btn-text">Add Subject</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="content-area" role="main">
+            <div id="subjectList" class="subject-list" role="list" aria-label="Subject list">
+                <!-- Subjects will be added here dynamically -->
+            </div>
+        </main>
+
+        <footer role="contentinfo">
+            <div class="footer-tagline">
+                <p class="tagline-text">"Use this app Everyday & Keep HOD away"</p>
+            </div>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Track your class attendance and stay eligible for exams. Maintains 75% minimum requirement.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Real-time percentage calculation</li>
+                        <li>Visual progress tracking</li>
+                        <li>Classes needed indicator</li>
+                        <li>Auto-save to browser</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Version</h4>
+                    <p>v1.0.0</p>
+                    <p class="copyright">© 2025 Attendance Tracker</p>
+                    <p><a href="https://github.com/sushil3050-ctrl" target="_blank" rel="noopener noreferrer">GitHub - start the repository and follow</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="made-with-love">Made with ❤️ by Sushil RK</p>
+            </div>
+        </footer>
+
+        <!-- Add Subject Modal -->
+        <div id="modal" class="modal hidden" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">✨ Add New Subject</h2>
+                    <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <label for="subjectName">Subject Name</label>
+                    <input 
+                        type="text" 
+                        id="subjectName" 
+                        placeholder="e.g., Mathematics, Physics..." 
+                        maxlength="25"
+                        autocomplete="off"
+                        aria-required="true"
+                        aria-describedby="subjectHint"
+                    >
+                    <p id="subjectHint" class="input-hint">Maximum 25 characters</p>
+                </div>
+                <div class="modal-buttons">
+                    <button id="cancelBtn" class="btn-secondary">Cancel</button>
+                    <button id="saveBtn" class="btn-primary">Add Subject</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Toast Notification Container -->
+        <div id="toastContainer" class="toast-container" role="region" aria-live="polite" aria-atomic="true"></div>
+    </div>
+
+    <!-- Defer non-critical JavaScript -->
+    <script defer src="./script.min.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(function(registration) {
+                        console.log('✅ Service Worker registered:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('❌ Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
