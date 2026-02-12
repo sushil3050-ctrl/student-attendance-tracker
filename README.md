@@ -1,4 +1,4 @@
-# 📊 Student Attendance Tracker
+# 📊 ClassCheck
 A modern, responsive web application to help students track their class attendance and maintain the required 75% eligibility for exams.
 
 [Launch the Attendance Tracker App](https://attendance-by-sushil.vercel.app)
