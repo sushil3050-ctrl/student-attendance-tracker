@@ -1,4 +1,4 @@
-# 📊 Student Attendance Tracker
+# 📊 Class Check
 
 A modern, responsive web application to help students track their class attendance and maintain the required 75% eligibility for exams.
 
@@ -22,8 +22,8 @@ Visit the deployed application: [https://student-attendance-tracker.vercel.app](
 ### Option 2: Local Development
 1. Clone the repository:
    ```bash
-   git clone https://github.com/sushil3050-ctrl/student-attendance-tracker.git
-   cd student-attendance-tracker
+   git clone https://github.com/sushil3050-ctrl/Class-Check.git
+   cd Class-Check
    ```
 
 2. Open `index.html` in your browser or use a local server:
@@ -64,7 +64,7 @@ Visit the deployed application: [https://student-attendance-tracker.vercel.app](
 ## 📁 Project Structure
 
 ```
-student-attendance-tracker/
+class-check/
 ├── index.html          # Main HTML file
 ├── style.css           # Stylesheet
 ├── script.js           # Main JavaScript logic
@@ -137,7 +137,7 @@ const MAX_SUBJECTS = 7; // Change this value
 ### GitHub Pages
 1. Enable Pages in repository settings
 2. Select `main` branch
-3. Deploy at `https://username.github.io/student-attendance-tracker`
+3. Deploy at `https://username.github.io/Class-Check`
 
 ### Netlify
 1. Connect GitHub repository
@@ -156,7 +156,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Sushil RK**
 - GitHub: [@sushil3050-ctrl](https://github.com/sushil3050-ctrl)
-- Project: [Student Attendance Tracker](https://github.com/sushil3050-ctrl/student-attendance-tracker)
+- Project: [Class Check](https://github.com/sushil3050-ctrl/Class-Check)
 
 ## ⭐ Support
 
