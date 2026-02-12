@@ -1,6 +1,6 @@
 {
-  "name": "Student Attendance Tracker",
-  "short_name": "Attendance",
+  "name": "Class Check",
+  "short_name": "Class Check",
   "description": "Track your class attendance and stay eligible for exams. Maintain 75% minimum requirement.",
   "start_url": "/",
   "display": "standalone",
